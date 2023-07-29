@@ -95,7 +95,7 @@
             {{-- 10GB of <strong>250GB</strong> Free. --}}
           </div>
           <div>
-            <strong>Copyright</strong> Example Company &copy; 2014-2015
+            <strong>Internal Repo System</strong> &copy; 2023
           </div>
         </div>
       </div>   

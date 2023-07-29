@@ -26,7 +26,7 @@
               <span class="m-r-sm text-muted welcome-message">Welcome to Repo System FKIP USP</span>
             </li>
             <li>
-              <a href="login.html"><i class="fa fa-sign-out"></i> Log out </a>
+              <a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i> Log out </a>
             </li>
           </ul>
         </nav>
@@ -51,11 +51,15 @@
                   <div class="col-sm-10"><textarea class="form-control" placeholder="Maks 500 karakter"></textarea></div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group"><label class="col-sm-2 control-label">Indeks</label>
+                <div class="form-group"><label class="col-sm-2 control-label">Tanggal</label>
                   <div class="col-sm-10"><input type="text" class="form-control"></div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group"><label class="col-sm-2 control-label">Url</label>
+                <div class="form-group"><label class="col-sm-2 control-label">Jam</label>
+                  <div class="col-sm-10"><input type="text" class="form-control"></div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group"><label class="col-sm-2 control-label">Tempat</label>
                   <div class="col-sm-10"><input type="text" class="form-control"></div>
                 </div>
                 <div class="hr-line-dashed"></div>
@@ -73,12 +77,12 @@
                           </div>
                           <div class="modal-body">
                             <p>
-                              Apakah anda yakin untuk <strong>Membatalkan Perubahan</strong> yang telah dilakukan? Pilih batal untuk kembali ke halaman artikel
+                              Apakah anda yakin untuk <strong>Membatalkan Perubahan</strong> yang telah dilakukan? Pilih batal untuk kembali ke halaman seminar
                             </p>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Lanjut Edit</button>
-                            <a type="button" class="btn btn-primary" href="{{ url('/pengajaran') }}">Batal</a>
+                            <a type="button" class="btn btn-primary" href="{{ url('/seminar') }}">Batal</a>
                           </div>
                         </div>
                       </div>

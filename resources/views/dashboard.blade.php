@@ -374,54 +374,27 @@
           <h5>Daftar Dosen</h5>
         </div>
         <div class="ibox-content">
-          {{-- <div class="">
-            <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">Add a new row</a>
-          </div> --}}
           <table class="table table-striped table-bordered table-hover " id="editable" >
             <thead>
               <tr>
-                <th>Nama Dosen</th>
-                <th>NIP</th>
-                <th>Jabatan</th>
-                <th>Alamat</th>
-                <th>No. HP</th>
+                <th class="col-sm-0,5">#</th>
+                <th class="col-sm-2,5">Nama Dosen</th>
+                <th class="col-sm-2">NIP</th>
+                <th class="col-sm-1">Jabatan</th>
+                <th class="col-sm-2">Prodi</th>
+                <th class="col-sm-2">Email</th>
+                <th class="col-sm-2">No. Hp</th>
               </tr>
             </thead>
             <tbody>
               <tr class="gradeX">
+                <td>1</td>
                 <td>Tito Pangesti Adji</td>
-                <td>6472857982579259</td>
+                <td>57437634783568</td>
                 <td>Kaprodi</td>
-                <td class="center">Kudus, Jawa Tengah</td>
-                <td class="center">087324159132</td>
-              </tr>
-              <tr class="gradeX">
-                <td>Muhammad Bagus</td>
-                <td>57438436266882</td>
-                <td>Dosen</td>
-                <td class="center">Kudus, Jawa Tengah</td>
-                <td class="center">087324154902</td>
-              </tr>
-              <tr class="gradeX">
-                <td>Novian Arianto</td>
-                <td>437625782468276</td>
-                <td>Dosen</td>
-                <td class="center">Pati, Jawa Tengah</td>
-                <td class="center">087324157243</td>
-              </tr>
-              <tr class="gradeX">
-                <td>Muhammad Hanif</td>
-                <td>57437278264826486</td>
-                <td>Dosen</td>
-                <td class="center">Kudus, Jawa Tengah</td>
-                <td class="center">084975843482</td>
-              </tr>
-              <tr class="gradeX">
-                <td>Adityatama</td>
-                <td>463572648276825</td>
-                <td>Dosen</td>
-                <td class="center">Juwana, Jawa Tengah</td>
-                <td class="center">087325934504</td>
+                <td>Pendidikan Jasmani</td>
+                <td>tito@gmail.com</td>
+                <td>081567876678</td>
               </tr>
             </tbody>
           </table>

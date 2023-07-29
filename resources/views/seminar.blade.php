@@ -34,16 +34,17 @@
         </div>
         <div class="ibox-content">
           <div class="m-b-sm">
-            <a href="{{ url('/editseminar') }}" class="btn btn-primary ">Tambah Baru</a>
+            <a href="{{ url('/tambahseminar') }}" class="btn btn-primary ">Tambah Baru</a>
           </div>
-          <table class="table table-striped table-bordered table-hover " id="editable" >
+          <table class="table table-striped table-bordered table-hover dataTables-example" >
             <thead>
               <tr>
                 <th class="col-sm-0,5">#</th>
-                <th class="col-sm-4,5">Nama Acara</th>
+                <th class="col-sm-4">Nama Acara</th>
                 <th class="col-sm-2">Tema</th>
                 <th class="col-sm-3">Tempat</th>
                 <th class="col-sm-2">Tanggal</th>
+                <th class="col-sm-0,5">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -53,6 +54,30 @@
                 <td>Kebersihan</td>
                 <td>Gedung Widyaloka, Universitas Brawijaya</td>
                 <td>26 Juni 2023</td>
+                <td class="text-center"> 
+                  <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal6"><i class="fa fa-trash"></i></button>
+                  <div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Hapus</span>
+                          </button>
+                          <h4 class="modal-title">Hapus Seminar</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Apakah anda yakin untuk <strong>Menghapus</strong> seminar yang anda pilih? Pilih batal untuk kembali ke halaman seminar
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
+                          <a type="button" class="btn btn-primary" href="{{ url('/seminar') }}">Hapus</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
