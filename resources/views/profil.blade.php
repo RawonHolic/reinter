@@ -38,7 +38,7 @@
                         </dt> <dd><div class="btn-group pull-right">
                           <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" style="font-size: 14px">Edit Informasi <span class="caret"></span></button>
                           <ul class="dropdown-menu">
-                            <li><a href="{{ url('/editbiodata') }}" class="font-bold" style="font-size: 13px">Biodata</a></li>
+                            <li><a href="{{ route('edit.biodata') }}" class="font-bold" style="font-size: 13px">Biodata</a></li>
                             <li><a href="{{ url('/editpendidikan') }}" class="font-bold" style="font-size: 13px">Pendidikan</a></li>
                             <li><a href="{{ url('/editpengalaman') }}" class="font-bold" style="font-size: 13px">Pengalaman</a></li>
                           </ul>

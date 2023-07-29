@@ -38,46 +38,46 @@
               <h5 class="pull-right" style="font-size: 15px">Edit Biodata</h5>
             </div>
             <div class="ibox-content">
-              <form method="POST" action="/editbiodata" class="form-horizontal">
+              <form method="POST" action="{{ route('update.biodata') }}" class="form-horizontal">
                 @csrf
                 <div class="form-group"><label class="col-sm-2 control-label">Nama Lengkap</label>
-                  <div class="col-sm-10"><input type="text" class="form-control" name="nama" value="{{ Session::get('nama') }}" required></div>
+                  <div class="col-sm-10"><input type="text" class="form-control" name="nama" value="{{ $profil->nama }}" required></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">Tempat Lahir</label>
-                  <div class="col-sm-10"><input type="text" class="form-control" name="tempat_lahir" value="{{ Session::get('tempat_lahir') }}" required></div>
+                  <div class="col-sm-10"><input type="text" class="form-control" name="tempat_lahir" value="{{ $profil->tempat_lahir }}" required></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">Tanggal Lahir</label>
-                  <div class="col-sm-10"><input type="text" class="form-control" name="tanggal_lahir" value="{{ Session::get('tanggal_lahir') }}" required></div>
+                  <div class="col-sm-10"><input type="text" class="form-control" name="tanggal_lahir" value="{{ $profil->tanggal_lahir }}" required></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">Kelamin</label>
-                  <div class="col-sm-10"><input type="text" class="form-control" name="kelamin" value="{{ Session::get('kelamin') }}" required></div>
+                  <div class="col-sm-10"><input type="text" class="form-control" name="kelamin" value="{{ $profil->kelamin }}" required></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">Alamat</label>
                   <div class="col-sm-10">
                       <div class="row m-b-md">
-                          <div class="col-md-12"><input type="text" class="form-control" name="alamat" value="{{ Session::get('alamat') }}" required></div>
+                          <div class="col-md-12"><input type="text" class="form-control" name="alamat" value="{{ $profil->alamat }}" required></div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6"><input type="text" placeholder="Kab/Kota" class="form-control" name="alamat_kabkot" value="{{ Session::get('alamat_kabkot') }}" required></div>
-                        <div class="col-md-6"><input type="text" placeholder="Provinsi" class="form-control" name="alamat_prov" value="{{ Session::get('alamat_prov') }}" required></div>
+                        <div class="col-md-6"><input type="text" placeholder="Kab/Kota" class="form-control" name="alamat_kabkot" value="{{ $profil->alamat_kabkot }}" required></div>
+                        <div class="col-md-6"><input type="text" placeholder="Provinsi" class="form-control" name="alamat_prov" value="{{ $profil->alamat_prov }}" required></div>
                     </div>
                   </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">No. HP</label>
-                  <div class="col-sm-10"><input type="text" class="form-control" name="no_hp" value="{{ Session::get('no_hp') }}" required></div>
+                  <div class="col-sm-10"><input type="text" class="form-control" name="no_hp" value="{{ $profil->no_hp }}" required></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">Email</label>
-                  <div class="col-sm-10"><input type="text" class="form-control" name="email" value="{{ Session::get('email') }}" required></div>
+                  <div class="col-sm-10"><input type="text" class="form-control" name="email" value="{{ $profil->email }}" required></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">No. Identitas</label>
-                  <div class="col-sm-10"><input type="text" class="form-control" name="no_identitas" value="{{ Session::get('no_identitas') }}" required></div>
+                  <div class="col-sm-10"><input type="text" class="form-control" name="no_identitas" value="{{ $profil->no_identitas }}" required></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group">
