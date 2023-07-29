@@ -104,8 +104,8 @@
                   <div class="col-sm-10">
                     <select class="form-control" id="prodi" name="prodi" required>
                       <option value="">Pilih Program Studi</option>
-                      <option value="1">Pendidikan Jasmani</option>
-                      <option value="2">PGSD</option>
+                      <option value="5">Pendidikan Jasmani</option>
+                      <option value="6">PGSD</option>
                     </select>
                   </div>
                 </div>

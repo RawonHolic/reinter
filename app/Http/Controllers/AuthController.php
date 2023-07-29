@@ -61,14 +61,14 @@ class AuthController extends Controller
             }
 
             switch ($profil->prodi_id) {
-                case 1:
-                    $jabatan = 'Pendidikan Jasmani';
+                case 5:
+                    $prodi = 'Pendidikan Jasmani';
                     break;
-                case 2:
-                    $jabatan = 'PGSD';
+                case 6:
+                    $prodi = 'PGSD';
                     break;
                 default:
-                    $jabatan = 'Departement';
+                    $prodi = 'Departement';
                     break;
             }
 
