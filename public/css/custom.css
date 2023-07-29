@@ -1,0 +1,8 @@
+canvas#pieChart {
+  width: 50%; /* Menyesuaikan lebar grafik */
+  height: 50%; /* Menyesuaikan tinggi grafik */
+}
+
+canvas#barChart {
+  width: 100%;
+}
