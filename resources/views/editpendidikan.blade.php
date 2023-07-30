@@ -38,18 +38,19 @@
               <h5 class="pull-right" style="font-size: 15px">Edit Riwayat Pendidikan</h5>
             </div>
             <div class="ibox-content">
-              <form method="get" class="form-horizontal">
+              <form method="POST" action="{{ route('update.pendidikan') }}" class="form-horizontal">
+                @csrf
                 <div class="form-group"><label class="col-sm-2 control-label">SMA</label>
-                  <div class="col-sm-10"><input type="text" placeholder="Nama Sekolah" class="form-control"></div>
+                  <div class="col-sm-10"><input type="text" placeholder="Nama Sekolah" class="form-control" name="sma" value="{{ $profil->sma }}" required></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">Sarjana</label>
                   <div class="col-sm-10">
                     <div class="row m-b-md">
-                      <div class="col-md-12"><input type="text" placeholder="Jurusan" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Jurusan" class="form-control" name="s_jurusan" value="{{ $profil->s_jurusan }}" required></div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12"><input type="text" placeholder="Nama Perguruan Tinggi" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Nama Perguruan Tinggi" class="form-control" name="sarjana" value="{{ $profil->sarjana }}" required></div>
                     </div>
                   </div>
                 </div>
@@ -57,10 +58,10 @@
                 <div class="form-group"><label class="col-sm-2 control-label">Magister</label>
                   <div class="col-sm-10">
                     <div class="row m-b-md">
-                      <div class="col-md-12"><input type="text" placeholder="Jurusan" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Jurusan" class="form-control" name="m_jurusan" value="{{ $profil->m_jurusan }}" required></div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12"><input type="text" placeholder="Nama Perguruan Tinggi" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Nama Perguruan Tinggi" class="form-control" name="magister" value="{{ $profil->magister }}" required></div>
                     </div>
                   </div>
                 </div>
@@ -68,10 +69,10 @@
                 <div class="form-group"><label class="col-sm-2 control-label">Doktoral</label>
                   <div class="col-sm-10">
                     <div class="row m-b-md">
-                      <div class="col-md-12"><input type="text" placeholder="Jurusan" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Jurusan" class="form-control" name="d_jurusan" value="{{ $profil->d_jurusan }}" required></div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12"><input type="text" placeholder="Nama Perguruan Tinggi" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Nama Perguruan Tinggi" class="form-control" name="doktoral" value="{{ $profil->doktoral }}" required></div>
                     </div>
                   </div>
                 </div>
@@ -79,14 +80,23 @@
                 <div class="form-group"><label class="col-sm-2 control-label">Keahlian</label>
                   <div class="col-sm-10">
                     <div class="row m-b-md">
-                      <div class="col-md-12"><input type="text" placeholder="Jurusan" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Jurusan" class="form-control" name="k_jurusan" value="{{ $profil->k_jurusan }}" required></div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12"><input type="text" placeholder="Nama Perguruan Tinggi" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Nama Perguruan Tinggi" class="form-control" name="keahlian" value="{{ $profil->keahlian }}" required></div>
                     </div>
                   </div>
                 </div>
                 <div class="hr-line-dashed"></div>
+                @if (session('success'))
+                <div class="alert alert-success">
+                  {{ session('success') }}
+                </div>
+                @elseif (session('error'))
+                <div class="alert alert-danger">
+                  {{ session('error') }}
+                </div>
+                @endif
                 <div class="form-group">
                   <div class="col-sm-4 col-sm-offset-2">
                     <button class="btn btn-white" type="button" data-toggle="modal" data-target="#myModal6">Batal</button>

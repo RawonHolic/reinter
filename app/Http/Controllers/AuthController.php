@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profil;
+use App\Models\Jabatan;
+use App\Models\Prodi;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,6 +32,15 @@ class AuthController extends Controller
         $profil->no_identitas = $request->no_identitas;
         $profil->prodi_id = $request->prodi;
         $profil->jabatan_id = $request->jabatan;
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $filename = time() . '_' . $photo->getClientOriginalName();
+            $path = $photo->storeAs('img', $filename, 'public');
+
+            $profil->photo = $filename;
+        }
+
         $profil->save();
 
         Session::flash('message', 'Proses Registrasi Berhasil');
@@ -42,35 +53,19 @@ class AuthController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
             $profil = Profil::where('users_id', $user->id)->first();
 
-            switch ($profil->jabatan_id) {
-                case 1:
-                    $jabatan = 'Superadmin';
-                    break;
-                case 2:
-                    $jabatan = 'Dekan';
-                    break;
-                case 3:
-                    $jabatan = 'Kaprodi';
-                    break;
-                case 4:
-                    $jabatan = 'Dosen';
-                    break;
-                default:
-                    $jabatan = 'User';
-                    break;
-            }
+            $jabatan = $profil->jabatan ? $profil->jabatan->jabatan : 'User';
 
-            switch ($profil->prodi_id) {
-                case 5:
-                    $prodi = 'Pendidikan Jasmani';
-                    break;
-                case 6:
-                    $prodi = 'PGSD';
-                    break;
-                default:
-                    $prodi = 'Departement';
-                    break;
-            }
+            $prodi = $profil->prodi ? $profil->prodi->nama_prodi : 'Departement';
+
+            $sma = $profil->sma;
+            $sarjana = $profil->sarjana;
+            $s_jurusan = $profil->s_jurusan;
+            $magister = $profil->magister;
+            $m_jurusan = $profil->m_jurusan;
+            $doktoral = $profil->doktoral;
+            $d_jurusan = $profil->d_jurusan;
+            $keahlian = $profil->keahlian;
+            $k_jurusan = $profil->k_jurusan;
 
             Session::put('id', $user->id);
             Session::put('nama', $profil->nama);
@@ -85,6 +80,16 @@ class AuthController extends Controller
             Session::put('no_identitas', $profil->no_identitas);
             Session::put('prodi', $prodi);
             Session::put('jabatan', $jabatan);
+            Session::put('photo', $profil->photo);
+            Session::put('sma', $sma);
+            Session::put('sarjana', $sarjana);
+            Session::put('s_jurusan', $s_jurusan);
+            Session::put('magister', $magister);
+            Session::put('m_jurusan', $m_jurusan);
+            Session::put('doktoral', $doktoral);
+            Session::put('d_jurusan', $d_jurusan);
+            Session::put('keahlian', $keahlian);
+            Session::put('k_jurusan', $k_jurusan);
             return redirect('/');
         }else{
             Session::flash('error', 'Username atau Password Salah');

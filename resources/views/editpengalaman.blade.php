@@ -38,15 +38,16 @@
               <h5 class="pull-right" style="font-size: 15px">Edit Riwayat Pendidikan</h5>
             </div>
             <div class="ibox-content">
-              <form method="get" class="form-horizontal">
+              <form method="POST" action="{{ route('update.pengalaman') }}" class="form-horizontal">
+                @csrf
                 <div class="form-group"><label class="col-sm-2 control-label">Organisasi</label>
                   <div class="col-sm-10">
                     <div class="row m-b-md">
-                      <div class="col-md-8"><input type="text" placeholder="Nama Organisasi" class="form-control"></div>
-                      <div class="col-md-4"><input type="text" placeholder="Jabatan" class="form-control"></div>
+                      <div class="col-md-8"><input type="text" placeholder="Nama Organisasi" class="form-control" name="organisasi" value="{{ $profil->organisasi }}" required></div>
+                      <div class="col-md-4"><input type="text" placeholder="Jabatan" class="form-control" name="o_jabatan" value="{{ $profil->o_jabatan }}" required></div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12"><input type="text" placeholder="Deskripsi" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Deskripsi" class="form-control" name="o_deskripsi" value="{{ $profil->o_deskripsi }}" required></div>
                     </div>
                   </div>
                 </div>
@@ -54,11 +55,11 @@
                 <div class="form-group"><label class="col-sm-2 control-label">Instansi</label>
                   <div class="col-sm-10">
                     <div class="row m-b-md">
-                      <div class="col-md-8"><input type="text" placeholder="Nama Instansi" class="form-control"></div>
-                      <div class="col-md-4"><input type="text" placeholder="Jabatan" class="form-control"></div>
+                      <div class="col-md-8"><input type="text" placeholder="Nama Instansi" class="form-control" name="instansi" value="{{ $profil->instansi }}" required></div>
+                      <div class="col-md-4"><input type="text" placeholder="Jabatan" class="form-control" name="i_jabatan" value="{{ $profil->i_jabatan }}" required></div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12"><input type="text" placeholder="Deskripsi" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Deskripsi" class="form-control" name="i_deskripsi" value="{{ $profil->i_deskripsi }}" required></div>
                     </div>
                   </div>
                 </div>
@@ -66,15 +67,24 @@
                 <div class="form-group"><label class="col-sm-2 control-label">Perusahaan</label>
                   <div class="col-sm-10">
                     <div class="row m-b-md">
-                      <div class="col-md-8"><input type="text" placeholder="Nama Perusahaan" class="form-control"></div>
-                      <div class="col-md-4"><input type="text" placeholder="Jabatan" class="form-control"></div>
+                      <div class="col-md-8"><input type="text" placeholder="Nama Perusahaan" class="form-control" name="perusahaan" value="{{ $profil->perusahaan }}" required></div>
+                      <div class="col-md-4"><input type="text" placeholder="Jabatan" class="form-control" name="p_jabatan" value="{{ $profil->p_jabatan }}" required></div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12"><input type="text" placeholder="Deskripsi" class="form-control"></div>
+                      <div class="col-md-12"><input type="text" placeholder="Deskripsi" class="form-control" name="p_deskripsi" value="{{ $profil->p_deskripsi }}" required></div>
                     </div>
                   </div>
                 </div>
                 <div class="hr-line-dashed"></div>
+                @if (session('success'))
+                <div class="alert alert-success">
+                  {{ session('success') }}
+                </div>
+                @elseif (session('error'))
+                <div class="alert alert-danger">
+                  {{ session('error') }}
+                </div>
+                @endif
                 <div class="form-group">
                   <div class="col-sm-4 col-sm-offset-2">
                     <button class="btn btn-white" type="button" data-toggle="modal" data-target="#myModal6">Cancel</button>

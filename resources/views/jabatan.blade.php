@@ -60,13 +60,26 @@
               </tr>
             </thead>
             <tbody>
+              @foreach ($jabatanDosen as $jabatan)
               <tr class="gradeX">
-                <td>1</td>
-                <td>Tito Pangesti Adji</td>
-                <td>Penjas</td>
-                <td>Kaprodi</td>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $jabatan->nama }}</td>
+                <td>
+                  @if ($jabatan->prodi)
+                    {{ $jabatan->prodi->nama_prodi }}
+                  @else
+                    Tidak ada prodi
+                  @endif
+                </td>
+                <td>
+                  @if ($jabatan->jabatan)
+                    {{ $jabatan->jabatan->jabatan }}
+                  @else
+                    Tidak ada jabatan
+                  @endif
+                </td>
                 <td class="text-center"> 
-                  <button class="btn btn-info" type="button" data-toggle="modal" data-target="#myModal6"><i class="fa fa-paste"></i></button>
+                  <button class="btn btn-info btn-edit-jabatan" type="button" data-toggle="modal" data-target="#myModal6" data-jabatan-id="{{ $jabatan->jabatan_id }}"><i class="fa fa-paste"></i></button>
                   <div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
                     <div class="modal-dialog modal-sm">
                       <div class="modal-content">
@@ -79,25 +92,25 @@
                         <div class="modal-body">
                           <div class="form-group">
                             <div class="col-sm-12">
-                              <select class="form-control" id="jabatan" name="jabatan" required>
+                              <select class="form-control jabatan-select" id="jabatan_{{ $jabatan->id }}" name="jabatan" required>
                                 <option value="">Pilih Jabatan</option>
-                                <option value="1">Superadmin</option>
-                                <option value="2">Dekan</option>
-                                <option value="3">Kaprodi</option>
-                                <option value="4">Dosen</option>
+                                @foreach ($jabatanOptions as $jabatanOption)
+                                <option value="{{ $jabatanOption->jabatan_id }}">{{ $jabatanOption->jabatan }}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
-                          <a type="button" class="btn btn-primary" href="{{ url('/jabatan') }}">Simpan</a>
+                          <a type="button" class="btn btn-primary btn-save-jabatan" data-jabatan-id="{{ $jabatan->id }}" href="{{ url('/jabatan') }}">Simpan</a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </td>
               </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -105,4 +118,45 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+  // Inisialisasi DataTables
+  $('.dataTables-example').DataTable();
+
+  // Ketika tombol modal dibuka, isi nilai jabatan saat ini dari atribut data-jabatan-id
+  $(document).on('click', '.btn-edit-jabatan', function() {
+    var jabatanId = $(this).data('jabatan-id'); // Ambil nilai ID jabatan dari atribut data-jabatan-id
+    $('#jabatan_' + jabatanId).val(jabatanId); // Set nilai jabatan pada dropdown select modal
+    $('#myModal6_' + jabatanId).modal('show'); // Tampilkan modal
+  });
+
+  // Ketika tombol "Simpan" di klik dalam modal, kirim data jabatan yang telah diubah ke server
+  $(document).on('click', '.btn-save-jabatan', function() {
+    var jabatanId = $(this).data('jabatan-id'); // Ambil nilai ID jabatan dari atribut data-jabatan-id
+    var jabatanVal = $('#jabatan_' + jabatanId).val(); // Ambil nilai ID jabatan yang dipilih dari dropdown select modal
+
+    // Lakukan AJAX request untuk mengirim data jabatan ke server
+    $.ajax({
+      type: 'POST',
+      url: '/update-jabatan', // Ganti dengan URL endpoint untuk mengupdate jabatan
+      data: {
+        _token: '{{ csrf_token() }}', // Jangan lupa sertakan CSRF token jika menggunakan Laravel
+        jabatanId: jabatanId, // Kirim ID jabatan yang baru dipilih
+        jabatan: jabatanVal // Kirim nilai jabatan yang dipilih
+        // ... (jika ada data lain yang ingin dikirim ke server)
+      },
+      success: function(response) {
+        // Handle response dari server (jika diperlukan)
+        // Misalnya, tampilkan pesan sukses atau reload halaman untuk melihat perubahan
+        location.reload(); // Contoh: reload halaman untuk melihat perubahan
+      },
+      error: function(xhr, status, error) {
+        // Handle error jika terjadi masalah dalam request
+        console.error(error); // Contoh: log error ke console
+      }
+    });
+  });
+});
+</script>
 @endsection

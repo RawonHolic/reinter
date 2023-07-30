@@ -39,8 +39,8 @@
                           <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" style="font-size: 14px">Edit Informasi <span class="caret"></span></button>
                           <ul class="dropdown-menu">
                             <li><a href="{{ route('edit.biodata') }}" class="font-bold" style="font-size: 13px">Biodata</a></li>
-                            <li><a href="{{ url('/editpendidikan') }}" class="font-bold" style="font-size: 13px">Pendidikan</a></li>
-                            <li><a href="{{ url('/editpengalaman') }}" class="font-bold" style="font-size: 13px">Pengalaman</a></li>
+                            <li><a href="{{ route('edit.pendidikan') }}" class="font-bold" style="font-size: 13px">Pendidikan</a></li>
+                            <li><a href="{{ route('edit.pengalaman') }}" class="font-bold" style="font-size: 13px">Pengalaman</a></li>
                           </ul>
                         </div></dd>
                       </dl>
@@ -97,19 +97,23 @@
                         </div>
                       </div>
                       <div style="padding-bottom: 5px">
-                        <dt>SMA</dt> <dd>SMA Negeri 1 Ngunut</dd>
+                        <dt>SMA</dt> <dd>{{ Session::get('sma') }}</dd>
                       </div>
                       <div style="padding-bottom: 5px">
-                        <dt>Sarjana</dt> <dd>Universitas PGRI Nusantara Kediri</dd>
+                        <dt>Sarjana</dt> <dd>{{ Session::get('sarjana') }}</dd>
+                        <dt>Jurusan</dt> <dd>{{ Session::get('s_jurusan') }}</dd>
                       </div>
                       <div style="padding-bottom: 5px">
-                        <dt>Magister</dt> <dd>Universitas Negeri Yogyakarta</dd>
+                        <dt>Magister</dt> <dd>{{ Session::get('magister') }}</dd>
+                        <dt>Jurusan</dt> <dd>{{ Session::get('m_jurusan') }}</dd>
                       </div>
                       <div style="padding-bottom: 5px">
-                        <dt>Doktoral</dt> <dd> - </dd>
+                        <dt>Doktoral</dt> <dd>{{ Session::get('doktoral') }}</dd>
+                        <dt>Jurusan</dt> <dd>{{ Session::get('d_jurusan') }}</dd>
                       </div>
                       <div style="padding-bottom: 5px">
-                        <dt>Keahlian</dt> <dd> Ilmu Faal </dd>
+                        <dt>Keahlian</dt> <dd>{{ Session::get('k_jurusan') }}</dd>
+                        <dt>Perguruan Tinggi</dt> <dd>{{ Session::get('keahlian') }}</dd>
                       </div>
                     </dl>
                   </div>
@@ -127,13 +131,19 @@
                         </div>
                       </div>
                       <div style="padding-bottom: 5px">
-                        <dt>Organisasi</dt> <dd>Lorem ipsum dolor amet</dd>
+                        <dt>Organisasi</dt> <dd>{{ Session::get('organisasi') }}</dd>
+                        <dt>Jabatan</dt> <dd>{{ Session::get('o_jabatan') }}</dd>
+                        <dt>Deskripsi</dt> <dd>{{ Session::get('o_deskripsi') }}</dd>
                       </div>
                       <div style="padding-bottom: 5px">
-                        <dt>Intansi</dt> <dd>Lorem ipsum dolor amet</dd>
+                        <dt>Intansi</dt> <dd>{{ Session::get('instansi') }}</dd>
+                        <dt>Jabatan</dt> <dd>{{ Session::get('i_jabatan') }}</dd>
+                        <dt>Deskripsi</dt> <dd>{{ Session::get('i_deskripsi') }}</dd>
                       </div>
                       <div style="padding-bottom: 5px">
-                        <dt>Perusahaan</dt> <dd>Universitas Negeri Yogyakarta</dd>
+                        <dt>Perusahaan</dt> <dd>{{ Session::get('perusahaan') }}</dd>
+                        <dt>Jabatan</dt> <dd>{{ Session::get('p_jabatan') }}</dd>
+                        <dt>Deskripsi</dt> <dd>{{ Session::get('p_deskripsi') }}</dd>
                       </div>
                     </dl>
                   </div>

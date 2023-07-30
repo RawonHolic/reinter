@@ -4,10 +4,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\JabatanController;
 
 Route::get('/edit-biodata', [ProfileController::class, 'editBiodata'])->name('edit.biodata');
 Route::post('/update-biodata', [ProfileController::class, 'updateBiodata'])->name('update.biodata');
 
+Route::get('/edit-pendidikan', [ProfileController::class, 'editRiwayatPendidikan'])->name('edit.pendidikan');
+Route::post('/update-pendidikan', [ProfileController::class, 'updateRiwayatPendidikan'])->name('update.pendidikan');
+
+Route::get('/edit-pengalaman', [ProfileController::class, 'editPengalaman'])->name('edit.pengalaman');
+Route::post('/update-pengalaman', [ProfileController::class, 'updatePengalaman'])->name('update.pengalaman');
 
 Route::middleware(['guest'])->group(function() {
     Route::post('/login', [AuthController::class, 'doLogin'])->name('login');
@@ -33,9 +41,9 @@ Route::get('/login', function () {
 Route::group(['middleware' => 'cekStatusLogin'], function()
 {
     //All the routes that belongs to the group goes here
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+    Route::get('/', [DashboardController::class, 'dataDosen'])->name('home');
+
+    Route::get('/dashboard', [DashboardController::class, 'dataDosen'])->name('dashboard');
 
     Route::get('/profil', function () {
         return view('profil');
@@ -116,8 +124,9 @@ Route::group(['middleware' => 'cekStatusLogin'], function()
     Route::get('/jabatan', function () {
         return view('jabatan');
     });
+
+    Route::get('/jabatan', [JabatanController::class, 'dataJabatanDosen'])->name('jabatan');
+    Route::post('/update-jabatan', [JabatanController::class, 'updateJabatan'])->name('update.jabatan');
 });
 
-Route::get('/register', function () {
-    return view('register');
-});
+Route::get('/register', [ProdiController::class, 'namaProdi'])->name('register');

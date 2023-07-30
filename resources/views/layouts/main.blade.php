@@ -25,7 +25,11 @@
             <li class="nav-header">
               <div class="dropdown profile-element"> 
                 <span>
-                  <img alt="image" class="img-circle" src="img/Tito_small.png" />
+                  @if (auth()->user() && auth()->user()->profil)
+                    <img src="{{ asset('img/' . auth()->user()->profil->photo) }}" alt="Foto Profil">
+                  @else
+                    <img alt="image" class="img-circle" src="img/Tito_small.png" />
+                  @endif
                 </span>
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                   <span class="clear"> 
@@ -42,7 +46,7 @@
               </div>
             </li>
             <li>
-              <a href="{{ url('/') }}"><i class='bx bxs-dashboard' ></i><span class="nav-label">Dashboard</span></a>
+              <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard' ></i><span class="nav-label">Dashboard</span></a>
             </li>
             @if (Session::get('jabatan') == 'Dosen' || Session::get('jabatan') == 'Kaprodi' || Session::get('jabatan') == 'Dekan')
             <li class="">
@@ -175,6 +179,70 @@
               "New row" ] );
 
       }
+
+      // Fungsi untuk menampilkan profil dosen pertama secara otomatis pada profile-info
+      function showDefaultProfile() {
+      var defaultProfile = document.querySelector('.gradeX:first-child');
+      highlightProfile(defaultProfile);
+      }
+
+      // Fungsi untuk menyorot profil dosen yang dipilih
+      function highlightProfile(row) {
+      var nama = row.cells[1].textContent;
+      var prodi = row.cells[4].textContent;
+      var jabatan = row.cells[3].textContent;
+
+      document.getElementById('profile-nama').textContent = nama;
+      document.getElementById('profile-prodi').textContent = prodi;
+      document.getElementById('profile-jabatan').textContent = jabatan;
+      }
+
+      // Panggil fungsi untuk menampilkan profil dosen pertama sebagai default
+      showDefaultProfile();
+
+      document.addEventListener('DOMContentLoaded', function() {
+      // Ambil elemen "profile-info" dan simpan dalam variabel
+      const profileInfo = document.querySelector('.profile-info');
+
+      // Ambil semua baris tabel dosen dan tambahkan event listener
+      const tableRows = document.querySelectorAll('tbody tr');
+      tableRows.forEach(function(row) {
+          row.addEventListener('click', function() {
+            // Ambil data profil ID dari atribut data
+            const profileId = this.getAttribute('data-profile-id');
+
+            // Ganti konten pada elemen "profile-nama" dengan nama dosen yang dipilih
+            document.getElementById('profile-nama').textContent = this.cells[1].textContent;
+
+            // Ganti konten pada elemen "profile-prodi" dengan nama prodi dosen yang dipilih
+            document.getElementById('profile-prodi').textContent = this.cells[4].textContent;
+
+            // Ganti konten pada elemen "profile-jabatan" dengan jabatan dosen yang dipilih
+            document.getElementById('profile-jabatan').textContent = this.cells[3].textContent;
+
+            // Ganti konten pada elemen "profile-info-description" dengan deskripsi profil dosen
+            // Gantilah bagian ini dengan data deskripsi profil dosen yang sesuai dengan profil yang dipilih
+            document.getElementById('profile-info-description').textContent =
+                'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form Ipsum available.';
+
+            // Tambahkan class "highlight" ke elemen "profile-info" untuk menampilkan highlight
+            profileInfo.classList.add('highlight');
+
+            // Jalankan scrollIntoView untuk menjaga agar profil dosen yang dipilih tetap terlihat dalam viewport
+            profileInfo.scrollIntoView({ behavior: 'smooth' });
+
+            // Tampilkan atau sembunyikan elemen "profile-info" berdasarkan profil ID
+            // Misalnya, Anda dapat menggunakan logika AJAX untuk mengambil detail profil dari server
+            // dan menampilkannya dalam elemen "profile-info".
+            // Berikut adalah contoh cara menampilkan atau menyembunyikan elemen menggunakan CSS:
+            // if (profileId) {
+            //     profileInfo.style.display = 'block';
+            // } else {
+            //     profileInfo.style.display = 'none';
+            // }
+            });
+        });
+    });
     </script>
 
   </body>

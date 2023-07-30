@@ -80,6 +80,15 @@
                   <div class="col-sm-10"><input type="text" class="form-control" name="no_identitas" value="{{ $profil->no_identitas }}" required></div>
                 </div>
                 <div class="hr-line-dashed"></div>
+                @if (session('success'))
+                <div class="alert alert-success">
+                  {{ session('success') }}
+                </div>
+                @elseif (session('error'))
+                <div class="alert alert-danger">
+                  {{ session('error') }}
+                </div>
+                @endif
                 <div class="form-group">
                   <div class="col-sm-4 col-sm-offset-2">
                     <button class="btn btn-white" type="button" data-toggle="modal" data-target="#myModal6">Cancel</button>

@@ -26,7 +26,7 @@
               <h2 class="text-center m-lg" style="font-weight: 800">Registrasi</h2>
             </div>
             <div class="ibox-content">
-              <form role="form" class="form-horizontal" action="/register" method="POST">
+              <form role="form" class="form-horizontal" action="/register" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group m-t-md">
                   <label class="col-sm-2 control-label">Nama Lengkap</label>
@@ -104,8 +104,9 @@
                   <div class="col-sm-10">
                     <select class="form-control" id="prodi" name="prodi" required>
                       <option value="">Pilih Program Studi</option>
-                      <option value="5">Pendidikan Jasmani</option>
-                      <option value="6">PGSD</option>
+                      @foreach ($namaProdi as $prodi)
+                          <option value="{{ $prodi->prodi_id }}">{{ $prodi->nama_prodi }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -113,12 +114,15 @@
                   <label class="col-sm-2 control-label">Jabatan</label>
                   <div class="col-sm-10">
                     <select class="form-control" id="jabatan" name="jabatan" required>
-                      <option value="">Pilih Jabatan</option>
-                      <option value="1">Superadmin</option>
-                      <option value="2">Dekan</option>
-                      <option value="3">Kaprodi</option>
                       <option value="4">Dosen</option>
                     </select>
+                  </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <label for="photo" class="col-sm-2 control-label">Foto Profil</label>
+                  <div class="col-sm-10">
+                    <input type="file" id="photo" name="photo">
                   </div>
                 </div>
                 <div class="hr-line-dashed"></div>

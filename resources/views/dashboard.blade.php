@@ -164,11 +164,10 @@
                   <div class="profile-info">
                       <div class="">
                           <div>
-                              <h2 class="no-margins">
-                                  Alex Smith
-                              </h2>
-                              <h4>Founder of Groupeq</h4>
-                              <small>
+                              <h2 class="no-margins" id="profile-nama"></h2>
+                              <h4 id="profile-prodi"></h4>
+                              <h4 id="profile-jabatan"></h4>
+                              <small id="profilr-info-description">
                                   There are many variations of passages of Lorem Ipsum available, but the majority
                                   have suffered alteration in some form Ipsum available.
                               </small>
@@ -374,30 +373,34 @@
           <h5>Daftar Dosen</h5>
         </div>
         <div class="ibox-content">
-          <table class="table table-striped table-bordered table-hover " id="editable" >
-            <thead>
-              <tr>
-                <th class="col-sm-0,5">#</th>
-                <th class="col-sm-2,5">Nama Dosen</th>
-                <th class="col-sm-2">NIP</th>
-                <th class="col-sm-1">Jabatan</th>
-                <th class="col-sm-2">Prodi</th>
-                <th class="col-sm-2">Email</th>
-                <th class="col-sm-2">No. Hp</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="gradeX">
-                <td>1</td>
-                <td>Tito Pangesti Adji</td>
-                <td>57437634783568</td>
-                <td>Kaprodi</td>
-                <td>Pendidikan Jasmani</td>
-                <td>tito@gmail.com</td>
-                <td>081567876678</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover dataTables-example" >
+              <thead>
+                <tr>
+                  <th class="col-sm-0,5">#</th>
+                  <th class="col-sm-2,5">Nama Dosen</th>
+                  <th class="col-sm-2">NIP</th>
+                  <th class="col-sm-1">Jabatan</th>
+                  <th class="col-sm-2">Prodi</th>
+                  <th class="col-sm-2">Email</th>
+                  <th class="col-sm-2">No. Hp</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($profils as $profil)
+                <tr class="gradeX" onclick="highlightProfile(this)" data-profile-id="{{ $profil->id }}">
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $profil->nama }}</td>
+                  <td>{{ $profil->no_identitas }}</td>
+                  <td>{{ $profil->jabatan->jabatan }}</td>
+                  <td>{{ $profil->prodi->nama_prodi }}</td>
+                  <td>{{ $profil->email }}</td>
+                  <td>{{ $profil->no_hp }}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -9,4 +9,5 @@ class Jabatan extends Model
 {
     use HasFactory;
     protected $table = 'jabatan';
+    protected $primaryKey = 'jabatan_id';
 }
